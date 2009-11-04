@@ -32,6 +32,11 @@ sub get_or_post : Path('bar') Method('GET') Method('POST') {
     $ctx->response->body('get or post');
 }
 
+sub any_method : Path('baz') {
+    my ($self, $ctx) = @_;
+    $ctx->response->body('any');
+}
+
 __PACKAGE__->meta->make_immutable;
 
 1;
