@@ -1,8 +1,33 @@
 package Catalyst::ActionRole::MatchRequestMethod;
+# ABSTRACT: Dispatch actions based on HTTP request methods
 
 use Moose::Role;
 use Perl6::Junction 'none';
 use namespace::autoclean;
+
+=head1 SYNOPSIS
+
+    package MyApp::Controller::Foo;
+
+    use Moose;
+    use namespace::autoclean;
+
+    BEGIN {
+        extends 'Catalyst::Controller::ActionRole';
+    }
+
+    __PACKAGE__->config(
+        action_roles => ['MatchRequestMethod'],
+    );
+
+    sub get_foo    : Path Method('GET')    { ... }
+    sub update_foo : Path Method('POST')   { ... }
+    sub create_foo : Path Method('PUT')    { ... }
+    sub delete_foo : Path Method('DELETE') { ... }
+
+=head1 DESCRIPTION
+
+=cut
 
 requires 'attributes';
 
@@ -18,5 +43,11 @@ around match => sub {
 
     return $self->$orig($ctx);
 };
+
+=head1 SEE ALSO
+
+L<Catalyst::Controller::ActionRole>
+
+=cut
 
 1;
