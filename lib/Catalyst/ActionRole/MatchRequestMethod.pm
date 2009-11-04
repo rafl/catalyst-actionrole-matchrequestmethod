@@ -4,6 +4,8 @@ use Moose::Role;
 use Perl6::Junction 'none';
 use namespace::autoclean;
 
+requires 'attributes';
+
 around match => sub {
     my ($orig, $self, $ctx) = @_;
     my @methods = @{ $self->attributes->{Method} || [] };
