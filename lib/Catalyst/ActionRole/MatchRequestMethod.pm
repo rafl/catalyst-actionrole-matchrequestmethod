@@ -48,6 +48,8 @@ around match => sub {
 
 L<Catalyst::Controller::ActionRole>
 
+inspired by: L<http://dev.catalystframework.org/wiki/gettingstarted/howtos/HTTP_method_matching_for_actions>
+
 =cut
 
 1;
