@@ -20,12 +20,18 @@ use namespace::autoclean;
         action_roles => ['MatchRequestMethod'],
     );
 
-    sub get_foo    : Path Method('GET')    { ... }
-    sub update_foo : Path Method('POST')   { ... }
-    sub create_foo : Path Method('PUT')    { ... }
-    sub delete_foo : Path Method('DELETE') { ... }
+    sub get_foo    : Path Method('GET')         { ... }
+    sub update_foo : Path Method('POST')        { ... }
+    sub create_foo : Path Method('PUT')         { ... }
+    sub delete_foo : Path Method('DELETE')      { ... }
+    sub foo        : Path Method('GET', 'POST') { ... }
 
 =head1 DESCRIPTION
+
+This module allows you to write L<Catalyst> actions which only match certain
+HTTP request methods. Actions which would normally be dispatched to will not
+match if the request method is incorrect, allowing less specific actions to
+match the path instead.
 
 =cut
 
@@ -47,6 +53,8 @@ around match => sub {
 =head1 SEE ALSO
 
 L<Catalyst::Controller::ActionRole>
+
+L<Catalyst::Action::REST>
 
 inspired by: L<http://dev.catalystframework.org/wiki/gettingstarted/howtos/HTTP_method_matching_for_actions>
 
