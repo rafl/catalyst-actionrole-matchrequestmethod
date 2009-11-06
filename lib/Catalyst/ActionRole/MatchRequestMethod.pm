@@ -20,11 +20,11 @@ use namespace::autoclean;
         action_roles => ['MatchRequestMethod'],
     );
 
-    sub get_foo    : Path Method('GET')         { ... }
-    sub update_foo : Path Method('POST')        { ... }
-    sub create_foo : Path Method('PUT')         { ... }
-    sub delete_foo : Path Method('DELETE')      { ... }
-    sub foo        : Path Method('GET', 'POST') { ... }
+    sub get_foo    : Path Method('GET')                { ... }
+    sub update_foo : Path Method('POST')               { ... }
+    sub create_foo : Path Method('PUT')                { ... }
+    sub delete_foo : Path Method('DELETE')             { ... }
+    sub foo        : Path Method('GET') Method('POST') { ... }
 
 =head1 DESCRIPTION
 
