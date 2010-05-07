@@ -1,6 +1,6 @@
 use strict;
 use warnings;
-use Test::More;
+use Test::More 0.89;
 use HTTP::Request::Common qw/GET POST DELETE/;
 
 use FindBin;
