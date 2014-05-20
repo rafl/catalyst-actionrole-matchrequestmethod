@@ -12,6 +12,32 @@ __PACKAGE__->config(
     action_roles => ['MatchRequestMethod'],
 );
 
+sub base : Chained('/') PathPart('') CaptureArgs(0) {}
+
+sub object_with_id :Chained('base') PathPart('') CaptureArgs(1) {
+  my ( $self, $ctx, $id ) = @_;
+  $ctx->stash( id => $id );
+}
+
+sub object_without_id :Chained('base') PathPart('') CaptureArgs(0) {
+}
+
+sub update :Chained('object_with_id') 
+            PathPart('') 
+            Args(0)
+            Method('PUT') {
+  my ( $self, $ctx ) = @_;
+  $ctx->response->body('put from chained');
+}
+
+sub read :Chained('object_with_id')
+          PathPart('')
+          Args(0)
+          Method('GET') {
+  my ( $self, $ctx ) = @_;
+  $ctx->response->body('get from chained');
+}
+
 sub default : Path Args {
     my ($self, $ctx) = @_;
     $ctx->response->body('default');
